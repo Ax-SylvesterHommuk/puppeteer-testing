@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const chalk = require('chalk');
 const fs = require('node:fs');
 const path = require('node:path');
 const config = require('./config.json');
@@ -13,7 +14,7 @@ async function runTests() {
       const testFilePath = path.join(__dirname, 'tests', testFile);
 
       if (config.verboseLogging){
-        console.log(`Running test from ${testFilePath}`);
+        console.log(chalk.blue(`Running test from ${testFilePath}`));
       }
 
       const page = await browser.newPage();
@@ -21,12 +22,12 @@ async function runTests() {
       try {
         const testModule = require(testFilePath);
         if (typeof testModule === 'function') {
-          await testModule(page);
+          await testModule(page, chalk);
         } else {
-          console.error(`Invalid test file: ${testFilePath}`);
+          console.log(chalk.red(`Invalid test file: ${testFilePath}`));
         }
       } catch (error) {
-        console.error(`Error in test file ${testFilePath}: ${error}`);
+        console.log(chalk.red(`Error in test file ${testFilePath}: ${error}`));
       }
       await page.close();
     }

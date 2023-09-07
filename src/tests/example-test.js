@@ -1,4 +1,4 @@
-module.exports = async (page) => {
+module.exports = async (page, chalk) => {
     // Handle the test
     await page.goto('https://example.com');
     const expectedTitle = 'Example Domain is cool'; // This will fail
@@ -6,8 +6,8 @@ module.exports = async (page) => {
 
     // Assert the test
     if (actualTitle === expectedTitle) {
-        console.log("Test Passed: Title is as expected");
+        console.log(chalk.green("Test Passed: Title is as expected"));
     } else {
-        console.error(`Test Failed: Expected title: "${expectedTitle}", Actual title: "${actualTitle}"`);
+        console.log(chalk.red(`Test Failed: Expected title: "${expectedTitle}", Actual title: "${actualTitle}"`));
     }
 };
