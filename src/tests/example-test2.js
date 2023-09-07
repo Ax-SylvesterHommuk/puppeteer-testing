@@ -8,9 +8,5 @@ module.exports = async (page, assert) => {
         return paragraph ? paragraph.innerText.trim() : '';
     });
 
-    if (actualParagraphContent === expectedParagraphContent) {
-        assert.OK('Paragraph content is as expected');
-    } else {
-        assert.FAIL('Paragraph content is not as expected', expectedParagraphContent, actualParagraphContent);
-    }
+    assert("Paragraph check", actualParagraphContent, expectedParagraphContent);
 };

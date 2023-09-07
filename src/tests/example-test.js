@@ -5,9 +5,5 @@ module.exports = async (page, assert) => {
     const actualTitle = await page.title();
 
     // Assert the test
-    if (actualTitle === expectedTitle) {
-        assert.OK('Title is as expected');
-    } else {
-        assert.FAIL('Title is not as expected', expectedTitle, actualTitle);
-    }
+    assert('Title check', actualTitle, expectedTitle);
 };
