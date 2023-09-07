@@ -4,7 +4,7 @@
   "description": "Testing puppets for world domination. Just kidding, we're just pulling strings...literally.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node src/main.js"
   },
   "keywords": [],
   "author": "",
