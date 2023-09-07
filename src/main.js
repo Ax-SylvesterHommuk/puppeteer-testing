@@ -11,7 +11,10 @@ async function runTests() {
   for (const testFile of testFiles) {
     if (testFile.endsWith('.js')) {
       const testFilePath = path.join(__dirname, 'tests', testFile);
-      console.log(`Running test from ${testFilePath}`);
+
+      if (config.verboseLogging){
+        console.log(`Running test from ${testFilePath}`);
+      }
 
       const page = await browser.newPage();
 
