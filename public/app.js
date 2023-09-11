@@ -9,11 +9,8 @@ const products = [
 const cart = [];
 
 // Function to display products
-
-
 function displayProducts() {
-    const productGrid = document.querySelector('.grid-cols-3');
-    productGrid.innerHTML = '';
+    const productGrid = document.getElementById('product-grid');
 
     products.forEach(product => {
         const card = document.createElement('div');
@@ -51,6 +48,16 @@ function updateCart() {
 
     const totalElement = document.getElementById('cart-total');
     totalElement.textContent = `Total: $${total.toFixed(2)}`;
+}
+
+// Function to redirect to the checkout page with cart data in URL parameters
+function checkout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty. Please add items to your cart before checking out.");
+    } else {
+        const cartData = encodeURIComponent(JSON.stringify(cart));
+        window.location.href = `checkout.html?cart=${cartData}`;
+    }
 }
 
 // Initialize the page
